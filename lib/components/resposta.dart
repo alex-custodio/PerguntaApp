@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class Resposta extends StatelessWidget {
   void Function()? onPressed;
   String? texto;
+  int? nota;
 
-  Resposta({super.key, this.texto, this.onPressed});
+  Resposta({super.key, this.texto, this.onPressed, this.nota});
 
   @override
   Widget build(BuildContext context) {
