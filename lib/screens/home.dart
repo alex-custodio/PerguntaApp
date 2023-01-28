@@ -29,15 +29,15 @@ class HomeState extends State<Home> {
         {"texto": "Azul", "nota": 10},
         {"texto": "Verde", "nota": 9},
         {"texto": "Vermelho", "nota": 8},
-        {"texto": "Roxo", "nota": 7},
+        {"texto": "Roxo", "nota": 3},
       ]
     },
     {
       "texto": "Qual o seu anime favorito",
       "resposta": [
-        {"texto": "AOT", "nota": 10},
-        {"texto": "Naruto", "nota": 9},
-        {"texto": "One Piece", "nota": 8},
+        {"texto": "AOT", "nota": 6},
+        {"texto": "Naruto", "nota": 8},
+        {"texto": "One Piece", "nota": 10},
       ]
     }
   ];
@@ -56,6 +56,14 @@ class HomeState extends State<Home> {
 
   bool get temPerguntaSelecionada {
     return _perguntaSelecionada < perguntas.length;
+  }
+
+  String get getFraseFinal {
+    if (_pontuacaoTotal >= 20) {
+      return "GENIAL!";
+    } else {
+      return "BOM!";
+    }
   }
 
   @override
@@ -79,6 +87,14 @@ class HomeState extends State<Home> {
         ),
         body: temPerguntaSelecionada
             ? Questionario(textoPergunta, respostas)
-            : Resultado());
+            : Resultado(
+                onPressed: () {
+                  setState(() {
+                    _perguntaSelecionada = 0;
+                    _pontuacaoTotal = 0;
+                  });
+                },
+                fraseFinal: getFraseFinal,
+              ));
   }
 }
